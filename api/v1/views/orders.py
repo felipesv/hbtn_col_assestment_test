@@ -9,5 +9,4 @@ def get_orders():
     cur = mysql.connection.cursor()
     cur.execute('''SELECT count(*) FROM users''')
     data = cur.fetchall()
-    print(data)
     return jsonify("TEST")

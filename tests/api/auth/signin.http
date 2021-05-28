@@ -1,0 +1,36 @@
+@api = http://localhost:5000/api/v1
+
+POST {{api}}/login
+Content-Type: application/json
+
+{
+	"email": "jhon.doe@xmail.com",
+	"password": "123"
+}
+
+###
+POST {{api}}/login
+Content-Type: application/json
+
+{
+	"email": "sara.bsh@xmail.com",
+	"password": "123"
+}
+
+###
+POST {{api}}/login
+Content-Type: application/json
+
+{
+	"email": "max.tyler@xmail.com",
+	"password": "123"
+}
+
+###
+POST {{api}}/login
+Content-Type: application/json
+
+{
+	"email": "jordan.c@xmail.com",
+	"password": "123"
+}

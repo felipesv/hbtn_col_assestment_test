@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="../static/styles/orders.css">
+</head>
+<body>
+  <div class="container">
+    <div class="d-flex justify-content-end mt-5">
+      <form action="/logout" method="post">
+        <button class="btn btn-danger">Sign Out</button>
+      </form>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+      <div class="col-10 d-flex align-items-center flex-column">
+        <form class="d-flex flex-column w-100" method="post">
+          <div class="input-group mb-3 w-100">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" />
+            <button class="btn btn-primary">Search</button>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex">
+              <h5 class="font-weight-bold mx-2">Order by:</h5>
+              <div class="form-check mx-2">
+                <input class="form-check-input" type="radio" name="orderby" id="total" value="total" checked>
+                <label class="form-check-label" for="total">Total</label>
+              </div>
+              <div class="form-check mx-2">
+                <input class="form-check-input" type="radio" name="orderby" id="date" value="date">
+                <label class="form-check-label" for="date">Date</label>
+              </div>
+            </div>
+            <div class="d-flex">
+              <h5 class="font-weight-bold mx-2">Order type:</h5>
+              <div class="form-check mx-2">
+                <input class="form-check-input" type="radio" name="de_asc" id="desc" value="desc" checked>
+                <label class="form-check-label" for="total">Desc</label>
+              </div>
+              <div class="form-check mx-2">
+                <input class="form-check-input" type="radio" name="de_asc" id="asc" value="asc">
+                <label class="form-check-label" for="date">Asc</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <div class="col-8">
+        {% if message %}
+          <div class="alert alert-danger" role="alert">
+            {{ message.get("message") }}
+          </div>
+        {% endif %}
+        {% if orders %}
+          <ul class="list-group">
+            {% for order in orders %}
+              <li class="list-group-item pre-view-list my-2 d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column">
+                  <div class="pre-view-title">Customer Name</div>
+                  <div class="pre-view-desc">{{ order.get('customer_name') }}</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="pre-view-title">Company</div>
+                  <div class="pre-view-desc">{{ order.get('company') }}</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="pre-view-title">Ship. Country</div>
+                  <div class="pre-view-desc">{{ order.get('shipping_country') }}</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="pre-view-title">Order Total</div>
+                  <div class="pre-view-desc">{{ order.get('order_total') }}</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="pre-view-title">Total paid</div>
+                  <div class="pre-view-desc">{{ order.get('payment_total') }}</div>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{ loop.index }}">Detail</button>
+                </div>
+              </li>
+
+              <div class="modal fade" id="modal_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Order Detail</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h3 class="pre-view-main-title">Customer Data</h3>
+                      <div class="d-flex flex-row justify-content-around">
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Customer ID</div>
+                          <div class="pre-view-desc">{{ order.get('customer_id') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Gov ID</div>
+                          <div class="pre-view-desc">{{ order.get('gov_id') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Customer Name</div>
+                          <div class="pre-view-desc">{{ order.get('customer_name') }}</div>
+                        </div>
+                      </div>
+                      <hr>
+                      <h3 class="pre-view-main-title">Order Data</h3>
+                      <div class="d-flex flex-row justify-content-around">
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Order ID</div>
+                          <div class="pre-view-desc">{{ order.get('order_id') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Order Status</div>
+                          <div class="pre-view-desc">{{ order.get('order_status') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">SubTotal</div>
+                          <div class="pre-view-desc">{{ order.get('order_subtotal') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Taxes</div>
+                          <div class="pre-view-desc">{{ order.get('order_taxes') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Total</div>
+                          <div class="pre-view-desc">{{ order.get('order_total') }}</div>
+                        </div>
+                      </div>
+                      <hr>
+                      <h3 class="pre-view-main-title">Shipping Data</h3>
+                      <div class="d-flex flex-row justify-content-around">
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Address</div>
+                          <div class="pre-view-desc">{{ order.get('shipping_address') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Country</div>
+                          <div class="pre-view-desc">{{ order.get('shipping_country') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">State</div>
+                          <div class="pre-view-desc">{{ order.get('shipping_state') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">City</div>
+                          <div class="pre-view-desc">{{ order.get('shipping_city') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Cost</div>
+                          <div class="pre-view-desc">{{ order.get('shipping_cost') }}</div>
+                        </div>
+                      </div>
+                      <hr>
+                      <h3 class="pre-view-main-title">Payment Data</h3>
+                      <div class="d-flex flex-row justify-content-around">
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Status</div>
+                          <div class="pre-view-desc">{{ order.get('payment_status') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">TXN ID</div>
+                          <div class="pre-view-desc">{{ order.get('payment_txn_id') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Method</div>
+                          <div class="pre-view-desc">{{ order.get('payment_type') }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div class="pre-view-title">Total</div>
+                          <div class="pre-view-desc">{{ order.get('payment_total') }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

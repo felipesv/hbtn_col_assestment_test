@@ -1,0 +1,4 @@
+@api = http://localhost:5000/api/v1
+
+GET {{api}}/orders/user_id
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjljNTk2YmRjLWZmMDAtNDI0ZS1iNzUwLTZlNzFhMmU0MjExYyJ9.nb-BtF86Ym9ztbM7yqQ0M4ae68NGO9Ja_tWQ9A0Xc1A

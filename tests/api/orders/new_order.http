@@ -1,0 +1,56 @@
+@api = http://localhost:5000/api/v1
+
+POST {{api}}/orders/
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImRkMGQ1Mjg1LWQxMTYtNGEyZS1hNjJhLTVlOWM2Y2NmMDcyYyJ9.9Z2hJ4KfnchXG5x8tXRtlhwOGQD9EYTRKpjdS_OtnTk
+Content-Type: application/json
+
+{
+	"orders_subtotal": 120,
+	"shipping_address": "St 45 No. 12243434233",
+	"shipping_city": "Los Angeles",
+	"shipping_state": "California",
+	"shipping_country": "United States",
+	"payment_type": "cash"
+}
+
+###
+POST {{api}}/orders/
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjljNTk2YmRjLWZmMDAtNDI0ZS1iNzUwLTZlNzFhMmU0MjExYyJ9.nb-BtF86Ym9ztbM7yqQ0M4ae68NGO9Ja_tWQ9A0Xc1A
+Content-Type: application/json
+
+{
+	"orders_subtotal": 220,
+	"shipping_address": "Avenue 12 No. 011020127",
+	"shipping_city": "San Francisco",
+	"shipping_state": "California",
+	"shipping_country": "United States",
+	"payment_type": "bank check"
+}
+
+###
+POST {{api}}/orders/
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjRhZGE4MTI0LTlhYmQtNGIzZC1hZmJmLTRhNzZjNjE2NWM4YiJ9.SXtObcs8LQkvPBbmgZVntS9BWscIyvC4DIPPLZfCcNw
+Content-Type: application/json
+
+{
+	"orders_subtotal": 305,
+	"shipping_address": "Tvr 100 No. 12093742",
+	"shipping_city": "New York",
+	"shipping_state": "New York",
+	"shipping_country": "United States",
+	"payment_type": "credit card"
+}
+
+###
+POST {{api}}/orders/
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImExZTYyNzU4LTU2OTAtNDNiZS04YjkzLTU3NGM3OWJhYmRiMyJ9.mG0qLdhs3YjRtGt5tUKaQM2VOeSr-vq0yyqr2mV4PTE
+Content-Type: application/json
+
+{
+	"orders_subtotal": 500,
+	"shipping_address": "St 62 No. 1292361",
+	"shipping_city": "Boston",
+	"shipping_state": "Massachusetts",
+	"shipping_country": "United States",
+	"payment_type": "credit card"
+}

@@ -1,0 +1,4 @@
+@api = http://localhost:5000/api/v1
+
+GET {{api}}/users/all
+x-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImRkMGQ1Mjg1LWQxMTYtNGEyZS1hNjJhLTVlOWM2Y2NmMDcyYyJ9.9Z2hJ4KfnchXG5x8tXRtlhwOGQD9EYTRKpjdS_OtnTk

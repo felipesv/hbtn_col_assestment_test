@@ -1,0 +1,52 @@
+@api = http://localhost:5000/api/v1
+
+POST {{api}}/signup
+Content-Type: application/json
+
+{
+	"first_name": "Jhon",
+	"last_name": "Doe",
+	"gov_id": "1F2G45J8K2",
+	"email": "jhon.doe@xmail.com",
+	"password": "123",
+	"company": "Apple"
+}
+
+###
+POST {{api}}/signup
+Content-Type: application/json
+
+{
+	"first_name": "Sara", 
+	"last_name": "Bush", 
+	"gov_id": "5T3Y4U5H4I6", 
+	"email": "sara.bsh@xmail.com", 
+	"password": "123",
+	"company": "Facebook"
+}
+
+###
+POST {{api}}/signup
+Content-Type: application/json
+
+{
+	"first_name": "Maxi", 
+	"last_name": "Tyler", 
+	"gov_id": "8R7B3N3I5P7", 
+	"email": "max.tyler@xmail.com", 
+	"password": "123", 
+	"company": "Tesla"
+}
+
+###
+POST {{api}}/signup
+Content-Type: application/json
+
+{
+	"first_name": "Jordan", 
+	"last_name": "Caicedo", 
+	"gov_id": "4D391K3M49M", 
+	"email": "jordan.c@xmail.com", 
+	"password": "123", 
+	"company": "Tesla"
+}
